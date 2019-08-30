@@ -21,7 +21,8 @@ function Topping(topping, price) {
 //   price: 2
 // };
 
-let sizeChoice = new Small("Small", 5);
+let sizeChoice = new Size("Small", 5);
+
 
 let toppingChoice = new Topping("Sausage", 2);
 
@@ -51,7 +52,8 @@ Pizza.prototype.chooseTopping = function(toppingPrice) {
 $(document).ready(function() {
   $("#choose-options").submit(function() {
     let sizeChoice = $("#choose-size").val();
-    let
+    let toppingChoice = $("#choice-topping").val();
+    let 
   });
 });
 
