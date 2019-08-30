@@ -4,30 +4,32 @@ function Pizza(sizeChoice, toppingChoice, totalPrice) {
   this.price = totalPrice;
 }
 
-// Pizza size constructors
-function Size(name, price) {
-  this.name = name;
+// Pizza size constructor
+function Size(size, price) {
+  this.size = size;
   this.price = price;
 };
 
-// Toppings constructors
-function Sausage() {
-  this.name = "Sausage";
-}
-function Anchovy() {
-  this.name = "Anchovy";
+// Toppings constructor
+function Topping(topping, price) {
+  this.topping = topping;
+  this.price = price;
 };
 
-function Onion() {
-  this.name = "Onion";
-};
+// let sausage = {
+//   name: "Sausage",
+//   price: 2
+// };
+
+let sizeChoice = new Small("Small", 5);
+
+let toppingChoice = new Topping("Sausage", 2);
+
+let pizza = new Pizza(sizeChoice, toppingChoice);
 
 
 
 
-let smallChoice = new Small();
-let sausageChoice = new Topping();
-let pizza = new Pizza(smallChoice, sausageChoice);
 
 Pizza.prototype.makePizza = function() {
   pizza.chooseSize();
@@ -35,19 +37,22 @@ Pizza.prototype.makePizza = function() {
 };
 
 Pizza.prototype.chooseSize = function(sizePrice) {
-  if (this.size === smallChoice) {
-    this.price += sizePrice.val();
+  if (this.size === sizeChoice) {
+    this.price += sizeChoice.price;
   }
 }
 
 Pizza.prototype.chooseTopping = function(toppingPrice) {
-  if (this.topping === sausageChoice) {
-    this.price += toppingPrice.val();
+  if (this.topping === toppingChoice) {
+    this.price += toppingChoice.price;
   }
 }
 
 $(document).ready(function() {
-  $("#")
+  $("#choose-options").submit(function() {
+    let sizeChoice = $("#choose-size").val();
+    let
+  });
 });
 
 
