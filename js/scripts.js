@@ -5,15 +5,10 @@ function Pizza(sizeChoice, toppingChoice, totalPrice) {
 }
 
 // Pizza size constructors
-function Small() {
-  this.name = "Small";
+function Size(name, price) {
+  this.name = name;
+  this.price = price;
 };
-function Medium() {
-  this.name = "Medium",
-};
-function Large() {
-  this.name = "Large",
-}
 
 // Toppings constructors
 function Sausage() {
@@ -26,14 +21,15 @@ function Anchovy() {
 function Onion() {
   this.name = "Onion";
 };
- 
 
 
-let smallChoice = new Small()
-let toppingChoice = new Topping()
-let pizza = new Pizza(smallChoice, sausageChoice)
 
-Pizza.prototype.makePizza() {
+
+let smallChoice = new Small();
+let sausageChoice = new Topping();
+let pizza = new Pizza(smallChoice, sausageChoice);
+
+Pizza.prototype.makePizza = function() {
   pizza.chooseSize();
   pizza.chooseTopping();
 };
@@ -50,3 +46,19 @@ Pizza.prototype.chooseTopping = function(toppingPrice) {
   }
 }
 
+$(document).ready(function() {
+  $("#")
+});
+
+
+// OR
+// function Size() {
+//   this.small = { name: "small", price: 5 }
+//   this.medium = { name: "medium", price: 7 }
+//   this.large = { name: "large", price: 9 }
+// }
+// function Topping() {
+//   this.sausage = { name: "Sausage", price: 2 };
+//   this.anchovy = { name:"Anchovy", price: 2 };
+//   this.onion = { name: "Onion", price: 1 };
+// }
