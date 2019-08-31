@@ -44,16 +44,17 @@ Pizza.prototype.chooseSize = function(sizePrice) {
 }
 
 // UI logic
-function add(a, b) {
+let toppingPrice = ["1", "2", "3"]
+
+let add = function(a, b) {
   return a + b;
 };
 
-let sumToppingPrice = function(toppingPrice) {
-  for (let i=0; i<=toppingPrice.length; i++) {
-    toppingPrice[i] = parseInt(toppingPrice[i]);
-    return toppingPrice;
-  };
-  return toppingPrice.reduce(add);
+function sumToppingPrice(toppingPrice) {
+  const toppingPriceTotal = toppingPrice.map(function(x) {
+    return parseInt(x);
+  });
+  toppingPriceTotal.reduce(add);
 };
 
 
@@ -72,6 +73,10 @@ $(document).ready(function() {
     let topping2 = toppingInput2.split('-');
     let topping3 = toppingInput3.split('-');
     let toppingChoice = [topping1[0], topping2[0], topping3[0]];
+    
+    if (toppingChoice[0] === 0) {
+     
+    } 
     let toppingPrice = [topping1[1], topping2[1], topping3[1]];
     sumToppingPrice(toppingPrice);
     let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPrice);
