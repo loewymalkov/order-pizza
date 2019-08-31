@@ -11,10 +11,10 @@ Order.prototype.displayOrder = function() {
 let orderLog = new Order();
 
 // Pizza object types
-function Pizza(sizeChoice, toppingChoice, toppingPrice) {
+function Pizza(sizeChoice, toppingChoice, toppingPriceForPizza) {
   this.size = sizeChoice[0];
   this.toppings = toppingChoice;
-  this.price = parseInt(sizeChoice[1]) + toppingPrice;
+  this.price = parseInt(sizeChoice[1]) + toppingPriceForPizza;
 };
 
 
@@ -44,7 +44,7 @@ Pizza.prototype.chooseSize = function(sizePrice) {
 }
 
 // UI logic
-let toppingPrice = ["1", "2", "3"]
+let toppingPrice = ["1", "0", "3"]
 
 let add = function(a, b) {
   return a + b;
@@ -52,11 +52,25 @@ let add = function(a, b) {
 
 function sumToppingPrice(toppingPrice) {
   let toppingPriceTotal = [];
-  toppingPriceTotal = toppingPrice.map(function(x) {
-    return parseInt(x);
+  toppingPriceTotal = toppingPrice.map(function(price) {
+    return parseInt(price);
   });
   return toppingPriceTotal.reduce(add);
 };
+
+// function createPizza(sizeChoice, topping1, topping2, topping3) {
+//   sizeChoice = sizeInput.split('-');
+//   topping1 = toppingInput1.split('-');
+//   topping2 = toppingInput2.split('-');
+//   topping3 = toppingInput3.split('-');
+//   let toppingChoice = [topping1[0], topping2[0], topping3[0]];
+//   toppingChoice = toppingChoice.filter(function(topping) {
+//     return topping !== '0'
+//   });
+//   let toppingPrice = [topping1[1], topping2[1], topping3[1]];
+//   sumToppingPrice(toppingPrice);
+//   let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPrice);
+// }
 
 
 
@@ -66,20 +80,20 @@ $(document).ready(function() {
   $("#choose-options").submit(function(event) {
     event.preventDefault();
     let sizeInput = $("#choose-size").val();
-    let toppingInput1 = $("#choice-topping-1").val();
-    let toppingInput2 = $("#choice-topping-2").val();
-    let toppingInput3 = $("#choice-topping-3").val();
+    let toppingInput1 = $("#choose-topping-1").val();
+    let toppingInput2 = $("#choose-topping-2").val();
+    let toppingInput3 = $("#choose-topping-3").val();
     let sizeChoice = sizeInput.split('-');
     let topping1 = toppingInput1.split('-');
     let topping2 = toppingInput2.split('-');
     let topping3 = toppingInput3.split('-');
     let toppingChoice = [topping1[0], topping2[0], topping3[0]];
-    toppingChoice = toppingChoice.filter(function(topping) {
-      return topping !== '0'
-    });
+      // toppingChoice = toppingChoice.filter(function(topping) {
+      //   return topping !== '0'
+      // });
     let toppingPrice = [topping1[1], topping2[1], topping3[1]];
-    sumToppingPrice(toppingPrice);
-    let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPrice);
+    let toppingPriceForPizza = sumToppingPrice(toppingPrice);
+    let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPriceForPizza);
     console.log(pizzaChoice);
   });
 });
