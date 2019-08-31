@@ -11,10 +11,10 @@ Order.prototype.displayOrder = function() {
 let orderLog = new Order();
 
 // Pizza object types
-function Pizza(sizeChoice, toppingChoice, ) {
+function Pizza(sizeChoice, toppingChoice, toppingPrice) {
   this.size = sizeChoice[0];
   this.toppings = toppingChoice;
-  this.price = sizeChoice[1] + toppingPrice;
+  this.price = parseInt(sizeChoice[1]) + toppingPrice;
 };
 
 
@@ -28,9 +28,9 @@ function Pizza(sizeChoice, toppingChoice, ) {
 //   this.price = price
 // };
 
-let sizeChoice = new Size("Small", 5);
-let toppingChoice = new Topping("Sausage", 2);
-let pizza = new Pizza();
+// let sizeChoice = new Size("Small", 5);
+// let toppingChoice = new Topping("Sausage", 2);
+// let pizza = new Pizza();
 
 Pizza.prototype.makePizza = function() {
   pizza.chooseSize();
@@ -51,10 +51,11 @@ let add = function(a, b) {
 };
 
 function sumToppingPrice(toppingPrice) {
-  const toppingPriceTotal = toppingPrice.map(function(x) {
+  let toppingPriceTotal = [];
+  toppingPriceTotal = toppingPrice.map(function(x) {
     return parseInt(x);
   });
-  toppingPriceTotal.reduce(add);
+  return toppingPriceTotal.reduce(add);
 };
 
 
@@ -73,14 +74,13 @@ $(document).ready(function() {
     let topping2 = toppingInput2.split('-');
     let topping3 = toppingInput3.split('-');
     let toppingChoice = [topping1[0], topping2[0], topping3[0]];
-    
-    if (toppingChoice[0] === 0) {
-     
-    } 
+    toppingChoice = toppingChoice.filter(function(topping) {
+      return topping !== '0'
+    });
     let toppingPrice = [topping1[1], topping2[1], topping3[1]];
     sumToppingPrice(toppingPrice);
     let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPrice);
-      
+    console.log(pizzaChoice);
   });
 });
 
