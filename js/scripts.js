@@ -1,81 +1,36 @@
-// Order object type
-function Order() {
-  this.pizzaOrder = [],
-  this.currentID = 0
-}
-
-Order.prototype.displayOrder = function() {
-  return "You ordered a " + this.size + " Pizza with" 
-}
-
-let orderLog = new Order();
-
 // Pizza object types
-function Pizza(sizeChoice, toppingChoice, toppingPriceForPizza) {
-  this.size = sizeChoice[0];
+function Pizza(sizeChoicePrice, toppingChoice, toppingPriceForPizza) {
+  this.size = sizeChoicePrice[0];
   this.toppings = toppingChoice;
-  this.price = parseInt(sizeChoice[1]) + toppingPriceForPizza;
+  this.price = parseInt(sizeChoicePrice[1]) + toppingPriceForPizza;
 };
-
-
-// function Size(size, price) {
-//   this.size = size,
-//   this.price = price
-// };
-
-// function Topping(topping, price) {
-//   this.topping = topping,
-//   this.price = price
-// };
-
-// let sizeChoice = new Size("Small", 5);
-// let toppingChoice = new Topping("Sausage", 2);
-// let pizza = new Pizza();
-
-Pizza.prototype.makePizza = function() {
-  pizza.chooseSize();
-  pizza.chooseTopping();
-};
-
-Pizza.prototype.chooseSize = function(sizePrice) {
-  if (this.size === sizeChoice) {
-    this.price += sizeChoice.price;
-  }
-}
 
 // UI logic
-let toppingPrice = ["1", "0", "3"]
-
 let add = function(a, b) {
   return a + b;
 };
 
 function sumToppingPrice(toppingPrice) {
-  let toppingPriceTotal = [];
-  toppingPriceTotal = toppingPrice.map(function(price) {
+  let tempArray = [];
+  tempArray = toppingPrice.map(function(price) {
     return parseInt(price);
   });
-  return toppingPriceTotal.reduce(add);
+  return tempArray.reduce(add);
 };
 
-// function createPizza(sizeChoice, topping1, topping2, topping3) {
-//   sizeChoice = sizeInput.split('-');
-//   topping1 = toppingInput1.split('-');
-//   topping2 = toppingInput2.split('-');
-//   topping3 = toppingInput3.split('-');
-//   let toppingChoice = [topping1[0], topping2[0], topping3[0]];
-//   toppingChoice = toppingChoice.filter(function(topping) {
-//     return topping !== '0'
-//   });
-//   let toppingPrice = [topping1[1], topping2[1], topping3[1]];
-//   sumToppingPrice(toppingPrice);
-//   let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPrice);
-// }
+function makePizza(sizeInput, toppingInput1, toppingInput2 ,toppingInput3) {
+  let sizeChoicePrice = sizeInput.split('-');
+  let topping1 = toppingInput1.split('-');
+  let topping2 = toppingInput2.split('-');
+  let topping3 = toppingInput3.split('-');
+  let toppingChoice = [topping1[0], topping2[0], topping3[0]];
+  let toppingPrice = [topping1[1], topping2[1], topping3[1]];
+  let toppingPriceForPizza = sumToppingPrice(toppingPrice);
+  let pizzaChoice = new Pizza(sizeChoicePrice, toppingChoice, toppingPriceForPizza);
+  return $("#display-order").text("You ordered a " + pizzaChoice.size + " pizza with these toppings: " + pizzaChoice.toppings.join(', ') + ". This will cost $" + pizzaChoice.price + ".");
+};
 
-
-
-
-
+// Front end UI
 $(document).ready(function() {
   $("#choose-options").submit(function(event) {
     event.preventDefault();
@@ -83,21 +38,12 @@ $(document).ready(function() {
     let toppingInput1 = $("#choose-topping-1").val();
     let toppingInput2 = $("#choose-topping-2").val();
     let toppingInput3 = $("#choose-topping-3").val();
-    let sizeChoice = sizeInput.split('-');
-    let topping1 = toppingInput1.split('-');
-    let topping2 = toppingInput2.split('-');
-    let topping3 = toppingInput3.split('-');
-    let toppingChoice = [topping1[0], topping2[0], topping3[0]];
-      // toppingChoice = toppingChoice.filter(function(topping) {
-      //   return topping !== '0'
-      // });
-    let toppingPrice = [topping1[1], topping2[1], topping3[1]];
-    let toppingPriceForPizza = sumToppingPrice(toppingPrice);
-    let pizzaChoice = new Pizza(sizeChoice, toppingChoice, toppingPriceForPizza);
-    console.log(pizzaChoice);
+    makePizza(sizeInput, toppingInput1, toppingInput2, toppingInput3);
   });
 });
 
+
+// Epicodus - I am saving this code for testing when I create a new branch, please ignore below this message
 
 // OR
 // function Size() {
